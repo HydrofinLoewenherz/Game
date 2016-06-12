@@ -1,3 +1,10 @@
-Game.iml
+# Dies ist die .gitignore Datei, in welcher die von Git zu ignorierenden Ordner
+# und Dateien aufgelistet werden. Einträge bitte nur bei Bedarf hinzufügen und
+# geordnet halten!
+
+# Dateien:
+*.iml
+
+# Ordner:
 .idea/
 out/
