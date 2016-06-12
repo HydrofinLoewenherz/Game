@@ -22,6 +22,7 @@ public class Game extends Application{
         mainHandler = new GameHandler();
 
         window.setScene(mainMenu.getScene());
+        window.setOnCloseRequest(event -> mainHandler.handelGameEnd());
         window.show();
     }
 
