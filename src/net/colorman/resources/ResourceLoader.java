@@ -2,12 +2,12 @@ package net.colorman.resources;
 
 import javafx.embed.swing.SwingFXUtils;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 public class ResourceLoader {
 
