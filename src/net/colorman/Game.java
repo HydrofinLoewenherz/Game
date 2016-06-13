@@ -3,6 +3,7 @@ package net.colorman;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import net.colorman.gui.MainMenu;
+import net.colorman.handler.ExceptionHandler;
 import net.colorman.handler.GameHandler;
 
 public class Game extends Application{
@@ -11,6 +12,7 @@ public class Game extends Application{
     private Stage window;
     private MainMenu mainMenu;
     private GameHandler mainHandler;
+    private ExceptionHandler exceptionHandler;
 
 
     @Override
@@ -20,6 +22,7 @@ public class Game extends Application{
 
         mainMenu = new MainMenu();
         mainHandler = new GameHandler();
+        exceptionHandler = new ExceptionHandler();
 
         window.setScene(mainMenu.getScene());
         window.setOnCloseRequest(event -> mainHandler.handelGameEnd());
@@ -46,5 +49,9 @@ public class Game extends Application{
 
     public MainMenu getMainMenu() {
         return mainMenu;
+    }
+
+    public ExceptionHandler getExceptionHandler() {
+        return exceptionHandler;
     }
 }
