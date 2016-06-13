@@ -2,16 +2,20 @@ package net.colorman;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import net.colorman.gui.GameScene;
 import net.colorman.gui.MainMenu;
 import net.colorman.handler.ExceptionHandler;
 import net.colorman.handler.GameHandler;
+import net.colorman.handler.ObjectHandler;
 
 public class Game extends Application{
 
     private static Game instance;
     private Stage window;
     private MainMenu mainMenu;
+    private GameScene gameScene;
     private GameHandler mainHandler;
+    private ObjectHandler objectHandler;
     private ExceptionHandler exceptionHandler;
 
 
@@ -21,7 +25,9 @@ public class Game extends Application{
         window = primaryStage;
 
         mainMenu = new MainMenu();
+        gameScene = new GameScene();
         mainHandler = new GameHandler();
+        objectHandler = new ObjectHandler();
         exceptionHandler = new ExceptionHandler();
 
         window.setScene(mainMenu.getScene());
@@ -53,5 +59,13 @@ public class Game extends Application{
 
     public ExceptionHandler getExceptionHandler() {
         return exceptionHandler;
+    }
+
+    public GameScene getGameScene() {
+        return gameScene;
+    }
+
+    public ObjectHandler getObjectHandler() {
+        return objectHandler;
     }
 }
