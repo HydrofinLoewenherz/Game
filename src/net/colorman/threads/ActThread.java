@@ -20,13 +20,18 @@ public class ActThread extends Thread {
     public void run() {
         while (ACTIVE) {
             if (WORK)
-                work();
+                ingameWork();
+            meunWork();
             waitTime();
         }
     }
 
-    private void work() {
+    private void ingameWork() {
+        // All Objects act
+    }
 
+    private void meunWork() {
+        //open Side Menu
     }
 
     private void waitTime() {
