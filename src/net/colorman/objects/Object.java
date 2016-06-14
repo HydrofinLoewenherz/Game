@@ -11,11 +11,13 @@ import net.colorman.Game;
 
 public class Object extends ImageView {
 
-    private Image image;
+    private Image defaultImage;
+    private Image[] imageList;
 
-    public Object(Image image) {
-        super(image);
-        this.image = image;
+    public Object(Image defaultImage, Image[] imageList) {
+        super(defaultImage);
+        this.defaultImage = defaultImage;
+        this.imageList = imageList;
 
         add();
     }
