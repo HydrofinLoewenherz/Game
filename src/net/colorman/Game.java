@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import net.colorman.gui.GameScene;
 import net.colorman.gui.MainMenu;
-import net.colorman.handler.ExceptionHandler;
 import net.colorman.handler.GameHandler;
 import net.colorman.handler.ObjectHandler;
 
@@ -16,7 +15,6 @@ public class Game extends Application{
     private GameScene gameScene;
     private GameHandler mainHandler;
     private ObjectHandler objectHandler;
-    private ExceptionHandler exceptionHandler;
 
 
     @Override
@@ -28,7 +26,6 @@ public class Game extends Application{
         gameScene = new GameScene();
         mainHandler = new GameHandler();
         objectHandler = new ObjectHandler();
-        exceptionHandler = new ExceptionHandler();
 
         window.setScene(mainMenu.getScene());
         window.setOnCloseRequest(event -> mainHandler.handelGameEnd());
@@ -55,10 +52,6 @@ public class Game extends Application{
 
     public MainMenu getMainMenu() {
         return mainMenu;
-    }
-
-    public ExceptionHandler getExceptionHandler() {
-        return exceptionHandler;
     }
 
     public GameScene getGameScene() {

@@ -38,7 +38,7 @@ public class ActThread extends Thread {
         try {
             sleep( (long) waitTime);
         } catch (InterruptedException exception) {
-            Game.getInstance().getExceptionHandler().addException("ActThread", "InterruptedExeption");
+            exception.printStackTrace();
         }
     }
 }

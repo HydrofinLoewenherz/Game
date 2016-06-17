@@ -27,7 +27,7 @@ public class Object extends ImageView {
             Platform.runLater(() -> Game.getInstance().getGameScene().getMainGroup().getChildren().add(this));
             Game.getInstance().getObjectHandler().addToTemp(this);
         } catch (Exception e) {
-            Game.getInstance().getExceptionHandler().addException("Object " + this, e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -36,7 +36,7 @@ public class Object extends ImageView {
             Platform.runLater(() -> Game.getInstance().getGameScene().getMainGroup().getChildren().remove(this));
             Game.getInstance().getObjectHandler().removeFromTemp(this);
         } catch (Exception e) {
-            Game.getInstance().getExceptionHandler().addException("Object " + this, e.toString());
+            e.printStackTrace();
         }
     }
 
