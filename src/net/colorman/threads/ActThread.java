@@ -1,7 +1,5 @@
 package net.colorman.threads;
 
-import net.colorman.Game;
-
 /**
  * Created by Paul on 13.06.2016.
  */
@@ -13,7 +11,7 @@ public class ActThread extends Thread {
     public ActThread(double time) {
         waitTime = time;
         ACTIVE = true;
-        WORK = true;
+        WORK = false;
     }
 
     @Override
@@ -40,5 +38,9 @@ public class ActThread extends Thread {
         } catch (InterruptedException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void stopThread() {
+        ACTIVE = false;
     }
 }

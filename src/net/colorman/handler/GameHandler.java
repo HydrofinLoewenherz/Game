@@ -12,10 +12,11 @@ public class GameHandler {
     }
 
     public void handelGameStart() {
-
+        Game.getInstance().getActThread().start();
     }
 
     public void handelGameEnd() {
         Game.getInstance().getWindow().close();
+        Game.getInstance().getActThread().stopThread();
     }
 }

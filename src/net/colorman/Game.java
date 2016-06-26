@@ -6,6 +6,7 @@ import net.colorman.gui.GameScene;
 import net.colorman.gui.MainMenu;
 import net.colorman.handler.GameHandler;
 import net.colorman.handler.ObjectHandler;
+import net.colorman.threads.ActThread;
 
 public class Game extends Application{
 
@@ -15,6 +16,7 @@ public class Game extends Application{
     private GameScene gameScene;
     private GameHandler mainHandler;
     private ObjectHandler objectHandler;
+    private ActThread actThread;
 
 
     @Override
@@ -26,6 +28,7 @@ public class Game extends Application{
         gameScene = new GameScene();
         mainHandler = new GameHandler();
         objectHandler = new ObjectHandler();
+        actThread = new ActThread(80);
 
         window.setScene(mainMenu.getScene());
         window.setOnCloseRequest(event -> mainHandler.handelGameEnd());
@@ -60,5 +63,9 @@ public class Game extends Application{
 
     public ObjectHandler getObjectHandler() {
         return objectHandler;
+    }
+
+    public ActThread getActThread() {
+        return actThread;
     }
 }
