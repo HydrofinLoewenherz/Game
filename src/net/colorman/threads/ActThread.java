@@ -23,8 +23,10 @@ public class ActThread extends Thread {
     @Override
     public void run() {
         while (ACTIVE) {
-            if (WORK)
+            if (WORK) {
                 ingameWork();
+                testEnd();
+            }
             waitTime();
         }
     }
@@ -32,6 +34,10 @@ public class ActThread extends Thread {
     private void ingameWork() {
         Game.getInstance().getObjectHandler().getObjectsAct().forEach(Object::act);
         if (slide) slideAll();
+    }
+
+    private void testEnd() {
+
     }
 
     public void slideAll() {
