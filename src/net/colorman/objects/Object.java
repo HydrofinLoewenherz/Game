@@ -40,8 +40,16 @@ public class Object extends ImageView {
         }
     }
 
+    //---------
+
+    public void act() {}
+
     public void setLocation(double x, double y) {
         setTranslateX(x);
         setTranslateY(y);
+    }
+
+    public void slide(double speed) {
+        setTranslateX(getTranslateX() + speed);
     }
 }

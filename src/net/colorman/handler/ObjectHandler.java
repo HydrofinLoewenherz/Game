@@ -1,6 +1,7 @@
 package net.colorman.handler;
 
 import net.colorman.objects.Object;
+import net.colorman.resources.ResourceLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +11,12 @@ import java.util.List;
  */
 public class ObjectHandler {
 
-    List<Object> objectsAct, objectsActTemp;
+    private ResourceLoader resourceLoader;
+    private List<Object> objectsAct, objectsActTemp;
 
     public ObjectHandler() {
+        resourceLoader = new ResourceLoader();
+
         objectsAct = new ArrayList<>();
         objectsActTemp = new ArrayList<>();
     }
@@ -35,5 +39,13 @@ public class ObjectHandler {
 
     public void clearTemp() {
         objectsActTemp.clear();
+    }
+
+    public List<Object> getObjectsAct() {
+        return objectsAct;
+    }
+
+    public ResourceLoader getResourceLoader() {
+        return resourceLoader;
     }
 }

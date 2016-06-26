@@ -40,6 +40,10 @@ public class MainMenu {
         scene.setOnMouseMoved(this::handelMouseMotion);
 
         startButton = new Button("Start Game");
+        startButton.setOnAction(event -> {
+            Game.getInstance().getWindow().setScene(Game.getInstance().getGameScene().getScene());
+            Game.getInstance().getWindow().setFullScreen(true);
+        });
         startButton.setPadding(defaultButtonInserts);
         exitButton = new Button(" Exit Game ");
         exitButton.setOnAction(event -> Game.getInstance().getMainHandler().handelGameEnd());
