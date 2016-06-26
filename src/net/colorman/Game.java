@@ -30,6 +30,9 @@ public class Game extends Application{
         objectHandler = new ObjectHandler();
         actThread = new ActThread(80);
 
+        window.setResizable(false);
+        window.setFullScreenExitHint("");
+        window.setFullScreen(true);
         window.setScene(mainMenu.getScene());
         window.setOnCloseRequest(event -> mainHandler.handelGameEnd());
         window.show();
