@@ -52,6 +52,6 @@ public class SideMenu {
     }
 
     public double getWidth() {
-        return defaultInsets.getRight() + defaultInsets.getLeft();
+        return width;
     }
 }

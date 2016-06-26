@@ -68,7 +68,7 @@ public class MainMenu {
     }
 
     public void handelMouseMotion(MouseEvent event) {
-        showSideMenu = event.getSceneX() < scene.getWidth() / 10;
+        showSideMenu = event.getSceneX() < sideMenu.getWidth();
 
         if (!showSideMenu && showedSideMenu) {
             mainGroup.getChildren().remove(sideMenu.get());
