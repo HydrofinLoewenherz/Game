@@ -32,9 +32,11 @@ public class Game extends Application{
 
         window.setResizable(false);
         window.setFullScreenExitHint("");
-        window.setFullScreen(true);
         window.setScene(mainMenu.getScene());
+        window.setOnShowing(event -> window.setFullScreen(true));
         window.setOnCloseRequest(event -> mainHandler.handelGameEnd());
+        window.getIcons().add(Game.getInstance().getObjectHandler().getResourceLoader().getImage("windowIcon.png"));
+        window.setTitle("ColorMan");
         window.show();
     }
 

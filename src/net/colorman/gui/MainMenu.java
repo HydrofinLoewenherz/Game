@@ -24,7 +24,7 @@ public class MainMenu {
     private Group mainGroup;
     private VBox vBox;
     private Scene scene;
-    private Button startButton, exitButton;
+    private Button startButton, exitButton, pauseButton;
     private boolean showSideMenu, showedSideMenu;
     private SideMenu sideMenu;
 
@@ -44,12 +44,17 @@ public class MainMenu {
             Game.getInstance().getWindow().setScene(Game.getInstance().getGameScene().getScene());
             Game.getInstance().getWindow().setFullScreen(true);
         });
+
+        pauseButton = new Button("Pause Game");
+        pauseButton.setOnAction(event -> Game.getInstance().getWindow().setIconified(true));
+        pauseButton.setPadding(defaultButtonInserts);
+
         startButton.setPadding(defaultButtonInserts);
         exitButton = new Button(" Exit Game ");
         exitButton.setOnAction(event -> Game.getInstance().getMainHandler().handelGameEnd());
         exitButton.setPadding(defaultButtonInserts);
 
-        vBox.getChildren().addAll(startButton, exitButton);
+        vBox.getChildren().addAll(startButton, pauseButton, exitButton);
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         vBox.setPadding(new Insets(
