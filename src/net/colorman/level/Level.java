@@ -1,7 +1,7 @@
 package net.colorman.level;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import net.colorman.objects.structure.Background;
 import net.colorman.resources.ResourceLoader;
 
 import java.io.IOException;
@@ -21,6 +21,8 @@ public abstract class Level {
         this.resourceLoader = new ResourceLoader();
         this.backgroundSpan = backgroundSpan;
         loadResources();
+        loadBackgrounds();
+        loadObjects();
     }
 
     private final void loadResources() {
@@ -29,6 +31,21 @@ public abstract class Level {
         } catch (IOException e) {
             e.printStackTrace(); // Error Handling muss hinzugefügt werden!
         }
+    }
+
+    private void loadBackgrounds() {
+        Background temp, last;
+        last = null;
+
+        for (Image image : backgroundArray) {
+            if (last != null) temp = new Background(last, image, null);
+            else temp = new Background(0, image, null);
+            last = temp;
+        }
+    }
+
+    protected void loadObjects() {
+
     }
 
 }

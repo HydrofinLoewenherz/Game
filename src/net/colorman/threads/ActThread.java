@@ -11,13 +11,16 @@ public class ActThread extends Thread {
 
     public static boolean ACTIVE, WORK;
     public double waitTime;
-    public double slideSpeed = 2;
+    public double slideSpeed = 20;
     public boolean slide = false;
 
     public ActThread(double time) {
         waitTime = time;
         ACTIVE = true;
         WORK = false;
+
+
+        slide = true;
     }
 
     @Override
@@ -32,6 +35,10 @@ public class ActThread extends Thread {
     }
 
     private void ingameWork() {
+
+        Game.getInstance().getObjectHandler().getObjectsActTemp().forEach(object -> Game.getInstance().getObjectHandler().addObjectAct(object));
+        Game.getInstance().getObjectHandler().getObjectsActTemp().clear();
+
         Game.getInstance().getObjectHandler().getObjectsAct().forEach(Object::act);
         if (slide) slideAll();
     }

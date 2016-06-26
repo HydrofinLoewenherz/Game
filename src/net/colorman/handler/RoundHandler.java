@@ -1,6 +1,7 @@
 package net.colorman.handler;
 
 import net.colorman.Game;
+import net.colorman.level.LevelOne;
 import net.colorman.objects.Object;
 import net.colorman.objects.entitys.player.Player;
 import net.colorman.objects.structure.Background;
@@ -43,14 +44,9 @@ public class RoundHandler {
 
     private void setup() {
         switch (round) {
-            default: setupRound1();
+            default: new LevelOne();
         }
 
         //player.setLocation(100,100);
-    }
-
-    private void setupRound1() {
-        new Platform(200, 200, 2);
-        new Platform(100, 100, 2);
     }
 }

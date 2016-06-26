@@ -41,6 +41,8 @@ public class Game extends Application{
         window.getIcons().add(Game.getInstance().getObjectHandler().getResourceLoader().getImage("windowIcon.png"));
         window.setTitle("ColorMan");
         window.show();
+
+        mainHandler.handelGameStart();
     }
 
     public static void main(String[] args) {

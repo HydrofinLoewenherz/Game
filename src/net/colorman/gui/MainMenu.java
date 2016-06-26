@@ -50,7 +50,7 @@ public class MainMenu {
         pauseButton.setPadding(defaultButtonInserts);
 
         startButton.setPadding(defaultButtonInserts);
-        exitButton = new Button(" Exit Game ");
+        exitButton = new Button("  Exit Game  ");
         exitButton.setOnAction(event -> Game.getInstance().getMainHandler().handelGameEnd());
         exitButton.setPadding(defaultButtonInserts);
 
@@ -59,7 +59,7 @@ public class MainMenu {
         vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         vBox.setPadding(new Insets(
                 ((Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - defaultButtonInserts.getTop() * vBox.getChildren().size()) - (vBox.getSpacing() * (vBox.getChildren().size() - 1)),
-                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - defaultButtonInserts.getRight(),
+                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2),
                 ((Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - defaultButtonInserts.getBottom()  * vBox.getChildren().size()) - (vBox.getSpacing() * (vBox.getChildren().size() - 1)),
                 (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - defaultButtonInserts.getLeft())
         );

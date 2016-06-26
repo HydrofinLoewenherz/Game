@@ -50,6 +50,6 @@ public class Object extends ImageView {
     }
 
     public void slide(double speed) {
-        setTranslateX(getTranslateX() + speed);
+        setTranslateX(getTranslateX() - speed);
     }
 }

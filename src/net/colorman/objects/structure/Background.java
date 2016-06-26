@@ -8,7 +8,13 @@ import net.colorman.objects.Object;
  */
 public class Background extends Object {
 
-    public Background(Image defaultImage, Image[] imageList) {
+    public Background(double x, Image defaultImage, Image[] imageList) {
         super(defaultImage, imageList);
+        setLocation(x, 0);
+    }
+
+    public Background(Background background, Image defaultImage, Image[] imageList) {
+        super(defaultImage, imageList);
+        setLocation(background.getTranslateX() + background.getImage().getWidth(), 0);
     }
 }

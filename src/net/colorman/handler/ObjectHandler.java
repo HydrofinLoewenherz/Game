@@ -48,4 +48,8 @@ public class ObjectHandler {
     public ResourceLoader getResourceLoader() {
         return resourceLoader;
     }
+
+    public List<Object> getObjectsActTemp() {
+        return objectsActTemp;
+    }
 }
