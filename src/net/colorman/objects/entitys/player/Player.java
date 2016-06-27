@@ -1,6 +1,7 @@
 package net.colorman.objects.entitys.player;
 
-import javafx.scene.image.Image;
+import net.colorman.Game;
+import net.colorman.misc.Vector;
 import net.colorman.objects.entitys.Entity;
 
 /**
@@ -8,7 +9,19 @@ import net.colorman.objects.entitys.Entity;
  */
 public class Player extends Entity {
 
-    public Player(Image defaultImage, Image[] imageList) {
-        super(defaultImage, imageList);
+    private double speed;
+
+    public Player() {
+        super(Game.getInstance().getObjectHandler().getResourceLoader().getImage("player.png"), null);
+        toFront();
+        speed = 10;
+    }
+
+    @Override
+    public void act() {
+        Vector vector = Game.getInstance().getGameScene().getKeyboardHandler().getMovementVector(isInAir);
+        vector.add(gravity);
+
+        move(vector);
     }
 }

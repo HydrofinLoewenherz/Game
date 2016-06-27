@@ -3,7 +3,7 @@ package net.colorman.misc;
 /**
  * Created by Paul on 14.06.2016.
  */
-public abstract class Vector {
+public class Vector {
 
     private double lengthX, lengthY, length;
 
@@ -31,5 +31,15 @@ public abstract class Vector {
 
     public double getLengthY() {
         return lengthY;
+    }
+
+    public void add(Vector vector) {
+        length += vector.getLength();
+        lengthX += vector.getLengthX();
+        lengthY += vector.getLengthY();
+    }
+
+    public void clear() {
+        setLength(0);
     }
 }

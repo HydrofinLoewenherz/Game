@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import net.colorman.Game;
+import net.colorman.misc.Vector;
 
 /**
  * Created by Paul on 13.06.2016.
@@ -13,6 +14,7 @@ public class Object extends ImageView {
 
     private Image defaultImage;
     private Image[] imageList;
+    public final Vector gravity = new Vector(0,9,9);
 
     public Object(Image defaultImage, Image[] imageList) {
         super(defaultImage);

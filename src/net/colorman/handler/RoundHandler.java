@@ -2,13 +2,7 @@ package net.colorman.handler;
 
 import net.colorman.Game;
 import net.colorman.level.LevelOne;
-import net.colorman.objects.Object;
-import net.colorman.objects.entitys.player.Player;
-import net.colorman.objects.structure.Background;
-import net.colorman.objects.structure.Platform;
 import net.colorman.threads.ActThread;
-
-import java.util.List;
 
 /**
  * Created by Paul on 26.06.2016.
@@ -16,7 +10,6 @@ import java.util.List;
 public class RoundHandler {
 
     private static int round;
-    private Player player;
 
     public RoundHandler() {
         round = 0;
@@ -35,18 +28,12 @@ public class RoundHandler {
     }
 
     private void clear() {
-        List<Object> temp = Game.getInstance().getObjectHandler().getObjectsAct();
-        temp.stream().filter(object -> !(object instanceof Player))
-                .filter(object -> !(object instanceof Background))
-                .filter(object -> !(object instanceof Platform))
-                .forEach(object -> Game.getInstance().getObjectHandler().removeObjectsAct(object));
+        Game.getInstance().getObjectHandler().getObjectsAct().clear();
     }
 
     private void setup() {
         switch (round) {
             default: new LevelOne();
         }
-
-        //player.setLocation(100,100);
     }
 }
