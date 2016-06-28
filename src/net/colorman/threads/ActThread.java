@@ -19,7 +19,7 @@ public class ActThread extends Thread {
         ACTIVE = true;
         WORK = false;
 
-        //slide = true;
+        slide = true;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Object extends ImageView {
 
     private Image defaultImage;
     private Image[] imageList;
-    public final Vector gravity = new Vector(0,9,9);
+    public final Vector gravity = new Vector(0,1,2);
 
     public Object(Image defaultImage, Image[] imageList) {
         super(defaultImage);

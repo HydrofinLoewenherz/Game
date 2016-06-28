@@ -17,7 +17,7 @@ import java.awt.*;
 public class PauseMenu {
 
     private VBox vBox;
-    private Button menuButton, continueButton;
+    private Button menuButton, continueButton, reloadButton;
     private final Insets defaultButtonInsets = new Insets(20, 150, 20, 150);
     private final double width = 500;
     private final double height = 700;
@@ -28,6 +28,12 @@ public class PauseMenu {
         continueButton = new Button("Continue");
         continueButton.setPadding(defaultButtonInsets);
         continueButton.setOnAction(event -> Game.getInstance().getMainHandler().handelPauseOff());
+        reloadButton = new Button(" Reload ");
+        reloadButton.setPadding(defaultButtonInsets);
+        reloadButton.setOnAction(event -> {
+            Game.getInstance().getRoundHandler().handelRoundEnd();
+            Game.getInstance().getMainHandler().handelPauseOff();
+        });
         menuButton = new Button("   Menu  ");
         menuButton.setPadding(defaultButtonInsets);
         menuButton.setOnAction(event -> {
@@ -45,7 +51,7 @@ public class PauseMenu {
         vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         vBox.setTranslateX((Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - (vBox.getPadding().getLeft() + menuButton.getPadding().getLeft()));
 
-        vBox.getChildren().addAll(continueButton, menuButton);
+        vBox.getChildren().addAll(continueButton, reloadButton, menuButton);
     }
 
     public VBox get() {

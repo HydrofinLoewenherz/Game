@@ -14,55 +14,74 @@ import java.util.List;
  */
 
 public class KeyboardHandler {
-    private List<KeyCode> keysDown;
-    private double defaultSpeed = 5;
-
-    private final Vector down = new Vector(0,1,defaultSpeed);
-    private final Vector up = new Vector(0,-1,defaultSpeed);
-    private final Vector left = new Vector(-1,0,defaultSpeed);
-    private final Vector right = new Vector(1,0,defaultSpeed);
+    List<KeyCode> keysDown;
+    Vector mainVector;
 
     public KeyboardHandler(Scene scene) {
         keysDown = new ArrayList<>();
+        mainVector = new Vector(0,0,1);
 
         scene.setOnKeyPressed(this::add);
         scene.setOnKeyReleased(this::remove);
     }
 
     private void add(KeyEvent event) {
-        keysDown.add(event.getCode());
-        if (event.getCode() == KeyCode.ESCAPE) {
+        KeyCode code = event.getCode();
+
+        if (!keysDown.contains(code)) {
+            keysDown.add(code);
+            add(code);
+        }
+        if (code == KeyCode.ESCAPE) {
             Game.getInstance().getWindow().setMaximized(true);
             Game.getInstance().getMainHandler().handelPauseOn();
         }
     }
 
     private void remove(KeyEvent event) {
-        keysDown.remove(event.getCode());
+        KeyCode code = event.getCode();
+        if (keysDown.contains(code)) {
+            keysDown.remove(code);
+            remove(code);
+        }
     }
 
-    public Vector getMovementVector(boolean inAir) {
-        Vector movementVector = new Vector(0,0,1);
+    public List<KeyCode> getKeysDown() {
+        return keysDown;
+    }
 
-        for (KeyCode code : keysDown) {
-            switch (code) {
-                case SPACE:
-                    if (!inAir) movementVector.add(up);
-                    break;
-                case A:
-                    if (!inAir) movementVector.add(left);
-                    break;
-                case S:
-                    if (inAir) movementVector.add(down);
-                    break;
-                case D:
-                    if (!inAir) movementVector.add(right);
-                    break;
-                default: //Nothing
-                    break;
-            }
+    private void add(KeyCode code) {
+        Vector vector = getVector(code);
+
+        if (vector != null) {
+            mainVector.add(vector);
         }
+    }
 
-        return movementVector;
+    private void remove(KeyCode code) {
+        Vector vector = getVector(code);
+
+        if (vector != null) {
+            mainVector.remove(vector);
+        }
+    }
+
+    private Vector getVector(KeyCode code) {
+        switch (code) {
+            case A:
+                return new Vector(-1,0,15);
+            case D:
+                return new Vector(1,0,15);
+            case S:
+                return new Vector(0,1,15);
+            case SPACE:
+                return new Vector(0,-1,50);
+            default:
+                return null;
+        }
+    }
+
+    public Vector getMainVector() {
+        return mainVector;
     }
 }

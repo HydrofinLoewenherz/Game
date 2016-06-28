@@ -13,28 +13,33 @@ import net.colorman.objects.structure.Platform;
 public class Entity extends Object {
 
     protected boolean isInAir = false;
+    protected Vector vector;
 
     public Entity(Image defaultImage, Image[] imageList) {
         super(defaultImage, imageList);
     }
 
-    public void move(Vector vector) {
+    public void move() {
         double tempX = getTranslateX();
         double tempY = getTranslateY();
 
         setTranslateX(tempX + vector.getLengthX());
-        if (isIntersecting()) {
+        while (isIntersecting()) {
             setTranslateX(tempX);
+            vector.decreseX(2);
+            setTranslateX(tempX + vector.getLengthX());
         }
 
-        setTranslateY(tempY + 5);
-        if (isIntersecting()) {
+        setTranslateY(tempY + vector.getLengthY());
+        while (isIntersecting()) {
             setTranslateY(tempY);
+            vector.decreseY(2);
+            setTranslateY(tempY + vector.getLengthY());
         }
 
         //test if in air
         tempY = getTranslateY();
-        setTranslateY(tempY + vector.getLengthY());
+        setTranslateY(tempY + 5);
         isInAir = !isIntersecting();
         setTranslateY(tempY);
     }

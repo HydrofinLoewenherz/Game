@@ -19,9 +19,15 @@ public class Player extends Entity {
 
     @Override
     public void act() {
-        Vector vector = Game.getInstance().getGameScene().getKeyboardHandler().getMovementVector(isInAir);
+        Vector vector = Game.getInstance().getGameScene().getKeyboardHandler().getMainVector();
         vector.add(gravity);
+        this.vector = vector;
 
-        move(vector);
+        move();
+    }
+
+    @Override
+    public void slide(double speed) {
+        super.slide(speed);
     }
 }
