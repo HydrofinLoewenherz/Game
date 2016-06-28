@@ -40,6 +40,9 @@ public class ActThread extends Thread {
         Game.getInstance().getObjectHandler().getObjectsActTemp().forEach(object -> Game.getInstance().getObjectHandler().addObjectAct(object));
         Game.getInstance().getObjectHandler().getObjectsActTemp().clear();
 
+        Game.getInstance().getObjectHandler().getObjectsToRemove().forEach(object -> Game.getInstance().getObjectHandler().getObjectsAct().remove(object));
+        Game.getInstance().getObjectHandler().getObjectsToRemove().clear();
+
         Game.getInstance().getObjectHandler().getObjectsAct().forEach(Object::act);
         slideAll();
     }

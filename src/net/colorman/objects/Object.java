@@ -33,10 +33,10 @@ public class Object extends ImageView {
         }
     }
 
-    private void remove() {
+    public void remove() {
         try {
             Platform.runLater(() -> Game.getInstance().getGameScene().getMainGroup().getChildren().remove(this));
-            Game.getInstance().getObjectHandler().removeFromTemp(this);
+            Game.getInstance().getObjectHandler().getObjectsToRemove().add(this);
         } catch (Exception e) {
             e.printStackTrace();
         }

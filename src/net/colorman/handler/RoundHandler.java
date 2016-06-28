@@ -2,6 +2,7 @@ package net.colorman.handler;
 
 import net.colorman.Game;
 import net.colorman.level.LevelOne;
+import net.colorman.objects.Object;
 import net.colorman.threads.ActThread;
 
 /**
@@ -28,7 +29,7 @@ public class RoundHandler {
     }
 
     private void clear() {
-        Game.getInstance().getObjectHandler().getObjectsAct().clear();
+        Game.getInstance().getObjectHandler().getObjectsAct().forEach(Object::remove);
     }
 
     private void setup() {

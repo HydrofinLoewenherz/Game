@@ -1,5 +1,6 @@
 package net.colorman.level;
 
+import net.colorman.enums.PlatformSize;
 import net.colorman.objects.entitys.player.Player;
 import net.colorman.objects.structure.Platform;
 
@@ -14,7 +15,8 @@ public class LevelOne extends Level {
 
     @Override
     protected void loadObjects() {
-        new Platform(200, 1000, 2);
         new Player();
+        new Platform(200, 1000, PlatformSize.GROUND);
+
     }
 }

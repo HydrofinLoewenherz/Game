@@ -13,13 +13,14 @@ import java.util.List;
 public class ObjectHandler {
 
     private ResourceLoader resourceLoader;
-    private List<Object> objectsAct, objectsActTemp;
+    private List<Object> objectsAct, objectsActTemp, objectsToRemove;
 
     public ObjectHandler() {
         resourceLoader = new ResourceLoader();
 
         objectsAct = new ArrayList<>();
         objectsActTemp = new ArrayList<>();
+        objectsToRemove = new ArrayList<>();
     }
 
     public void addObjectAct(Object object) {
@@ -40,6 +41,10 @@ public class ObjectHandler {
 
     public void clearTemp() {
         objectsActTemp.clear();
+    }
+
+    public List<Object> getObjectsToRemove() {
+        return objectsToRemove;
     }
 
     public List<Object> getObjectsAct() {
