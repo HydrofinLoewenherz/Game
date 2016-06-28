@@ -1,6 +1,7 @@
 package net.colorman.handler;
 
 import net.colorman.objects.Object;
+import net.colorman.objects.entitys.player.Player;
 import net.colorman.resources.ResourceLoader;
 
 import java.util.ArrayList;
@@ -51,5 +52,9 @@ public class ObjectHandler {
 
     public List<Object> getObjectsActTemp() {
         return objectsActTemp;
+    }
+
+    public Player getPlayer() {
+        return (Player) (objectsAct.stream().filter(object -> object instanceof Player).toArray())[0];
     }
 }
