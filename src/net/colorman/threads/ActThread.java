@@ -64,7 +64,8 @@ public class ActThread extends Thread {
     }
 
     public void slideAll() {
-        Game.getInstance().getObjectHandler().getObjectsAct().forEach(object -> object.slide(mathSlideSpeed()));
+        double speed = mathSlideSpeed();
+        Game.getInstance().getObjectHandler().getObjectsAct().forEach(object -> object.slide(speed));
     }
 
     private void waitTime() {

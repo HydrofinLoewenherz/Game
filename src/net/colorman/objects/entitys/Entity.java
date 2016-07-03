@@ -24,11 +24,7 @@ public class Entity extends Object {
         double tempY = getTranslateY();
 
         setTranslateX(tempX + vector.getLengthX());
-        while (isIntersecting()) {
-            setTranslateX(tempX);
-            vector.decreseX(2);
-            setTranslateX(tempX + vector.getLengthX());
-        }
+        if (isIntersecting()) setTranslateX(tempX);
 
         setTranslateY(tempY + vector.getLengthY());
         while (isIntersecting()) {

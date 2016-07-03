@@ -7,5 +7,5 @@ public enum PlatformSize {
     SHORT,
     NORMAL,
     LONG,
-    GROUND;
+    Base
 }

@@ -12,14 +12,31 @@ public class Platform extends Object {
 
     public Platform(double x, double y, PlatformSize size) {
         //super(Game.getInstance().getObjectHandler().getResourceLoader().getImage("platform.png"), null);
-        super(new Image("file:src/net/colorman/resources/images/longPlatform.png"), null);
+        super(new Image("file:src/net/colorman/resources/images/normalPlatform.png"), null);
 
+        setImage(size);
+        setLocation(x,y);
+    }
+
+    private void setImage(PlatformSize size) {
         switch (size) {
-            case GROUND:
+            case SHORT:
+                setImage(new Image("file:src/net/colorman/resources/images/shortPlatform.png"));
+                break;
+            case NORMAL:
+                setImage(new Image("file:src/net/colorman/resources/images/normalPlatform.png"));
+                break;
+            case LONG:
                 setImage(new Image("file:src/net/colorman/resources/images/longPlatform.png"));
                 break;
+            case Base:
+                setImage(new Image("file:src/net/colorman/resources/images/basePlatform.png"));
+                break;
+            default:
         }
+    }
 
-        setLocation(x,y);
+    public double getWidth() {
+        return getImage().getWidth();
     }
 }

@@ -2,6 +2,7 @@ package net.colorman.handler;
 
 import net.colorman.Game;
 import net.colorman.level.LevelOne;
+import net.colorman.level.LevelTwo;
 import net.colorman.objects.Object;
 import net.colorman.threads.ActThread;
 
@@ -13,7 +14,7 @@ public class RoundHandler {
     private static int round;
 
     public RoundHandler() {
-        round = 0;
+        round = 1;
         setup();
     }
 
@@ -26,6 +27,7 @@ public class RoundHandler {
         ActThread.WORK = false;
         clear();
         setup();
+        ActThread.WORK = true;
     }
 
     private void clear() {
@@ -34,6 +36,13 @@ public class RoundHandler {
 
     private void setup() {
         switch (round) {
+            case 1:
+                new LevelOne();
+                break;
+            case 2:
+                new LevelTwo();
+                break;
+
             default: new LevelOne();
         }
     }

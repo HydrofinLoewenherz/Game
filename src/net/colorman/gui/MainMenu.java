@@ -12,6 +12,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import net.colorman.Game;
+import net.colorman.threads.ActThread;
 
 import java.awt.*;
 
@@ -43,6 +44,7 @@ public class MainMenu {
         startButton.setOnAction(event -> {
             Game.getInstance().getWindow().setScene(Game.getInstance().getGameScene().getScene());
             Game.getInstance().getWindow().setFullScreen(true);
+            ActThread.WORK = true;
         });
 
         pauseButton = new Button("Pause Game");
