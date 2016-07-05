@@ -16,7 +16,7 @@ public class RoundHandler {
     private static int round;
 
     public RoundHandler() {
-        round = 4;
+        round = 0;
         setup();
     }
 
