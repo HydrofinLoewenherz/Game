@@ -13,7 +13,6 @@ public class ActThread extends Thread {
 
     public static boolean ACTIVE, WORK;
     public double waitTime;
-    public double slideSpeed = 20;
     public boolean slide = false;
 
     public ActThread(double time) {

@@ -2,6 +2,7 @@ package net.colorman.level;
 
 import javafx.scene.image.Image;
 import net.colorman.enums.PlatformSize;
+import net.colorman.objects.entitys.player.Player;
 import net.colorman.objects.structure.Background;
 import net.colorman.objects.structure.EndPlatform;
 import net.colorman.objects.structure.Platform;
@@ -26,6 +27,7 @@ public abstract class Level {
         this.backgroundSpan = backgroundSpan;
         loadResources();
         loadBackgrounds();
+        new Player();
         loadObjects();
 
         addEndPlatform(100, 750);
