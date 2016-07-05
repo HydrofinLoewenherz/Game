@@ -28,6 +28,7 @@ public class MainMenu {
     private Button startButton, exitButton, pauseButton;
     private boolean showSideMenu, showedSideMenu;
     private SideMenu sideMenu;
+    private SettingsMenu settingsMenu;
 
     private final Insets defaultButtonInserts = new Insets(40,300,40,300);
 
@@ -36,6 +37,7 @@ public class MainMenu {
         vBox = new VBox(20);
         scene = new Scene(mainGroup);
         sideMenu = new SideMenu();
+        settingsMenu = new SettingsMenu();
 
         scene.setOnKeyPressed(e -> {if (e.getCode() == KeyCode.ESCAPE) Game.getInstance().getMainHandler().handelGameEnd();});
         scene.setOnMouseMoved(this::handelMouseMotion);
@@ -71,7 +73,6 @@ public class MainMenu {
 
     public void handelMouseMotion(MouseEvent event) {
         showSideMenu = event.getSceneX() < sideMenu.getWidth();
-
         if (!showSideMenu && showedSideMenu) {
             mainGroup.getChildren().remove(sideMenu.get());
             showedSideMenu = false;
@@ -94,6 +95,10 @@ public class MainMenu {
 
     public Group getMainGroup() {
         return mainGroup;
+    }
+
+    public SettingsMenu getSettingsMenu() {
+        return settingsMenu;
     }
 }
 

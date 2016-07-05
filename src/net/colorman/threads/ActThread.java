@@ -58,7 +58,7 @@ public class ActThread extends Thread {
     }
 
     private double mathSlideSpeed() {
-        double temp = Game.getInstance().getObjectHandler().getPlayer().getTranslateX() - Toolkit.getDefaultToolkit().getScreenSize().getWidth() * .75;
+        double temp = Game.getInstance().getObjectHandler().getPlayer().getTranslateX() - Toolkit.getDefaultToolkit().getScreenSize().getWidth() * .5;
         if (temp < 0) return 0;
         else return temp;
     }

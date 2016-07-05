@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import net.colorman.Game;
+import net.colorman.enums.KeyAction;
 import net.colorman.misc.Vector;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 public class KeyboardHandler {
     List<KeyCode> keysDown;
     Vector mainVector;
+    KeyCode Up, Down, Left, Right;
 
     public KeyboardHandler(Scene scene) {
         keysDown = new ArrayList<>();
@@ -23,6 +25,8 @@ public class KeyboardHandler {
 
         scene.setOnKeyPressed(this::add);
         scene.setOnKeyReleased(this::remove);
+
+        loadKeys();
     }
 
     private void add(KeyEvent event) {
@@ -67,18 +71,23 @@ public class KeyboardHandler {
     }
 
     private Vector getVector(KeyCode code) {
-        switch (code) {
-            case A:
-                return new Vector(-1,0,15);
-            case D:
-                return new Vector(1,0,15);
-            case S:
-                return new Vector(0,1,15);
-            case SPACE:
-                return new Vector(0,-1,50);
-            default:
-                return null;
-        }
+        if (code == Left)
+            return new Vector(-1,0,15);
+        else if (code == Right)
+            return new Vector(1,0,15);
+        else if (code == Down)
+            return new Vector(0,1,15);
+        else if (code == Up)
+            return new Vector(0,-1,50);
+        else
+            return null;
+    }
+
+    public void loadKeys() {
+        Up = Game.getInstance().getSettingsHandler().getKeyByAction(KeyAction.UP).getKeyCode();
+        Down = Game.getInstance().getSettingsHandler().getKeyByAction(KeyAction.DOWN).getKeyCode();
+        Left = Game.getInstance().getSettingsHandler().getKeyByAction(KeyAction.LEFT).getKeyCode();
+        Right = Game.getInstance().getSettingsHandler().getKeyByAction(KeyAction.RIGHT).getKeyCode();
     }
 
     public Vector getMainVector() {

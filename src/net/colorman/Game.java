@@ -7,6 +7,7 @@ import net.colorman.gui.MainMenu;
 import net.colorman.handler.GameHandler;
 import net.colorman.handler.ObjectHandler;
 import net.colorman.handler.RoundHandler;
+import net.colorman.handler.SettingsHandler;
 import net.colorman.threads.ActThread;
 
 public class Game extends Application{
@@ -19,6 +20,7 @@ public class Game extends Application{
     private ObjectHandler objectHandler;
     private ActThread actThread;
     private RoundHandler roundHandler;
+    private SettingsHandler settingsHandler;
 
 
     @Override
@@ -26,6 +28,7 @@ public class Game extends Application{
         instance = this;
         window = primaryStage;
 
+        settingsHandler = new SettingsHandler();
         mainMenu = new MainMenu();
         gameScene = new GameScene();
         mainHandler = new GameHandler();
@@ -81,5 +84,9 @@ public class Game extends Application{
 
     public RoundHandler getRoundHandler() {
         return roundHandler;
+    }
+
+    public SettingsHandler getSettingsHandler() {
+        return settingsHandler;
     }
 }
