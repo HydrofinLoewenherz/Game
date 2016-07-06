@@ -4,9 +4,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import net.colorman.handler.KeyboardHandler;
 
-/**
- * Created by Paul on 13.06.2016.
- */
 public class GameScene {
 
     /**

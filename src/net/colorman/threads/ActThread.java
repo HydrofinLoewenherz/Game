@@ -6,9 +6,6 @@ import net.colorman.objects.entitys.player.Player;
 
 import java.awt.*;
 
-/**
- * Created by Paul on 13.06.2016.
- */
 public class ActThread extends Thread {
 
     /**

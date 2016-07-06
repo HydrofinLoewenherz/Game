@@ -4,10 +4,6 @@ import javafx.scene.image.Image;
 import net.colorman.enums.PlatformSize;
 import net.colorman.objects.Object;
 
-/**
- * Created by Paul on 13.06.2016.
- */
-
 public class Platform extends Object {
 
     public Platform(double x, double y, PlatformSize size) {

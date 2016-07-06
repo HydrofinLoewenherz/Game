@@ -1,8 +1,5 @@
 package net.colorman.enums;
 
-/**
- * Created by Paul on 05.07.2016.
- */
 public enum KeyAction {
     UP,
     DOWN,
