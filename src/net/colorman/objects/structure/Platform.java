@@ -18,6 +18,11 @@ public class Platform extends Object {
         setLocation(x,y);
     }
 
+    /**
+     * This Method sets an Image to the Platform related to its type (short / normal / long / base)
+     *
+     * @param size  The SIze of the Platform
+     */
     private void setImage(PlatformSize size) {
         switch (size) {
             case SHORT:
@@ -36,6 +41,11 @@ public class Platform extends Object {
         }
     }
 
+    /**
+     * A Getter for the Width of the Platform
+     *
+     * @return Double   Width
+     */
     public double getWidth() {
         return getImage().getWidth();
     }

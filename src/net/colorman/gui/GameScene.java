@@ -9,10 +9,29 @@ import net.colorman.handler.KeyboardHandler;
  */
 public class GameScene {
 
+    /**
+     * The Scene the InGame is on
+     */
     private Scene scene;
+
+    /**
+     * The MainGroup all the other Nodes are on
+     */
     private Group mainGroup;
+
+    /**
+     * The KeyboardHandler
+     */
     private KeyboardHandler keyboardHandler;
+
+    /**
+     * The PauseMenu
+     */
     private PauseMenu pauseMenu;
+
+    /**
+     * A Boolean to see if the Game is paused
+     */
     public boolean pause = false;
 
     public GameScene() {
@@ -22,20 +41,38 @@ public class GameScene {
         pauseMenu = new PauseMenu();
     }
 
-    //--Getter--
-
+    /**
+     * A Getter for the Scene
+     *
+     * @return Scene
+     */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * A Getter for the MainGroup
+     *
+     * @return Group
+     */
     public Group getMainGroup() {
         return mainGroup;
     }
 
+    /**
+     * A Getter for the KeyboardHandler
+     *
+     * @return KeyboardHandler
+     */
     public KeyboardHandler getKeyboardHandler() {
         return keyboardHandler;
     }
 
+    /**
+     * A Getter for the PauseMenu
+     *
+     * @return PauseMenu
+     */
     public PauseMenu getPauseMenu() {
         return pauseMenu;
     }

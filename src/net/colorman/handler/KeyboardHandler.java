@@ -10,13 +10,21 @@ import net.colorman.misc.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Paul on 26.06.2016.
- */
-
 public class KeyboardHandler {
+
+    /**
+     * A List of all the pressed Keys
+     */
     List<KeyCode> keysDown;
+
+    /**
+     * The main Vector created by the directionKeys pressed (no gravityVector implemented)
+     */
     Vector mainVector;
+
+    /**
+     * The KeyCodes for the directionKeys
+     */
     KeyCode Up, Down, Left, Right;
 
     public KeyboardHandler(Scene scene) {
@@ -29,6 +37,14 @@ public class KeyboardHandler {
         loadKeys();
     }
 
+    /**
+     * This Method triggers when a Key is pressed
+     * The Method adds the pressed Key to the pressed Keys
+     *
+     * @see #keysDown
+     *
+     * @param event     The KeyEvent
+     */
     private void add(KeyEvent event) {
         KeyCode code = event.getCode();
 
@@ -42,6 +58,14 @@ public class KeyboardHandler {
         }
     }
 
+    /**
+     * This Method triggers when a key is released
+     * The Method removes the KeyCode from the Keys pressed
+     *
+     * @see #keysDown
+     *
+     * @param event     The KeyEvent
+     */
     private void remove(KeyEvent event) {
         KeyCode code = event.getCode();
         if (keysDown.contains(code)) {
@@ -50,10 +74,14 @@ public class KeyboardHandler {
         }
     }
 
-    public List<KeyCode> getKeysDown() {
-        return keysDown;
-    }
-
+    /**
+     * This Method adds a direction Vector to the mainVector
+     * specific to the KeyCode
+     *
+     * @see #getVector(KeyCode)
+     *
+     * @param code  The keyCode
+     */
     private void add(KeyCode code) {
         Vector vector = getVector(code);
 
@@ -62,6 +90,14 @@ public class KeyboardHandler {
         }
     }
 
+    /**
+     * This Method removes a Vector from the mainVector
+     * specific to the KeyCode
+     *
+     * @see #getVector(KeyCode)
+     *
+     * @param code  The keyCode
+     */
     private void remove(KeyCode code) {
         Vector vector = getVector(code);
 
@@ -70,6 +106,13 @@ public class KeyboardHandler {
         }
     }
 
+    /**
+     * This Method returns a Vector created from a KeyCode
+     * The Method tests capability to one of the directionKeys
+     *
+     * @param code  The keyCode
+     * @return
+     */
     private Vector getVector(KeyCode code) {
         if (code == Left)
             return new Vector(-1,0,15);
@@ -83,6 +126,11 @@ public class KeyboardHandler {
             return null;
     }
 
+    /**
+     * This Method loads the directionKeys from the SettingsHandler
+     *
+     * @see SettingsHandler
+     */
     public void loadKeys() {
         Up = Game.getInstance().getSettingsHandler().getKeyByAction(KeyAction.UP).getKeyCode();
         Down = Game.getInstance().getSettingsHandler().getKeyByAction(KeyAction.DOWN).getKeyCode();
@@ -90,6 +138,20 @@ public class KeyboardHandler {
         Right = Game.getInstance().getSettingsHandler().getKeyByAction(KeyAction.RIGHT).getKeyCode();
     }
 
+    /**
+     * Getter for the List of keysDown
+     *
+     * @return List</KeyCode>   The keys pressed
+     */
+    public List<KeyCode> getKeysDown() {
+        return keysDown;
+    }
+
+    /**
+     * Getter for the mainVector
+     *
+     * @return Vector   the mainVector
+     */
     public Vector getMainVector() {
         return mainVector;
     }

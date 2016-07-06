@@ -6,19 +6,26 @@ import net.colorman.misc.Vector;
 import net.colorman.objects.Object;
 import net.colorman.objects.structure.Platform;
 
-/**
- * Created by Paul on 13.06.2016.
- */
-
 public class Entity extends Object {
 
+    /**
+     * A boolean to see if the Object is in mid air
+     */
     protected boolean isInAir = false;
+
+    /**
+     * The Vector the Object is Moving width
+     */
     protected Vector vector;
 
     public Entity(Image defaultImage, Image[] imageList) {
         super(defaultImage, imageList);
     }
 
+    /**
+     * This Method moves the Object by an specific Vector
+     *
+     */
     public void move() {
         double tempX = getTranslateX();
         double tempY = getTranslateY();
@@ -29,7 +36,7 @@ public class Entity extends Object {
         setTranslateY(tempY + vector.getLengthY());
         while (isIntersecting()) {
             setTranslateY(tempY);
-            vector.decreseY(2);
+            vector.decreaseY(2);
             setTranslateY(tempY + vector.getLengthY());
         }
 
@@ -40,6 +47,11 @@ public class Entity extends Object {
         setTranslateY(tempY);
     }
 
+    /**
+     * This Method checks if the Object is intersecting a Platform
+     *
+     * @return Boolean  isIntersecting
+     */
     public boolean isIntersecting() {
         for(Object object : Game.getInstance().getObjectHandler().getObjectsAct()) {
             if (object instanceof Platform) {

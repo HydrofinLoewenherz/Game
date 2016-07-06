@@ -8,23 +8,31 @@ import net.colorman.level.Level_R;
 import net.colorman.objects.Object;
 import net.colorman.threads.ActThread;
 
-/**
- * Created by Paul on 26.06.2016.
- */
 public class RoundHandler {
 
+    /**
+     * The round to be loaded
+     */
     private static int round;
 
     public RoundHandler() {
-        round = 0;
+        round = 1;
         setup();
     }
 
+    /**
+     * This Method handel's a round Win
+     *
+     */
     public void handelRoundWin() {
         round++;
         handelRoundEnd();
     }
 
+    /**
+     * This Method handel's the end of a Round and starts the setup of the next
+     *
+     */
     public void handelRoundEnd() {
         ActThread.WORK = false;
         clear();
@@ -32,10 +40,18 @@ public class RoundHandler {
         ActThread.WORK = true;
     }
 
+    /**
+     * This Method clears the clears the Scene by all Objects
+     *
+     */
     private void clear() {
         Game.getInstance().getObjectHandler().getObjectsAct().forEach(Object::remove);
     }
 
+    /**
+     * This Method switches the Round and setup one
+     *
+     */
     private void setup() {
         switch (round) {
             case 1:

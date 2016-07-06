@@ -20,19 +20,31 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Paul on 05.07.2016.
- */
 public class SettingsMenu {
 
-    private Group mainGroup;
-    VBox vBox;
+    /**
+     * The VBox for the buttons
+     */
+    private VBox vBox;
+
+    /**
+     * A temp value for the clicked keyBox
+     */
     private KeyBox keyBox;
-    List<KeyBox> keyBoxes;
+
+    /**
+     * A List of all the KeyBoxes on the vBox
+     */
+    private List<KeyBox> keyBoxes;
+
+    /**
+     * the Insets for all the Buttons and Labels
+     */
     private final Insets defaultButtonInsets = new Insets(40,150,40,150);
 
+
     public SettingsMenu() {
-        mainGroup = new Group();
+        Group mainGroup = new Group();
         vBox = new VBox(20);
         keyBoxes = new ArrayList<>();
         mainGroup.getChildren().add(vBox);
@@ -43,14 +55,13 @@ public class SettingsMenu {
 
 
         vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-        vBox.setPadding(new Insets(
-                ((Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - defaultButtonInsets.getTop() * vBox.getChildren().size()) - (vBox.getSpacing() * (vBox.getChildren().size() - 1)),
-                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2),
-                ((Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - defaultButtonInsets.getBottom()  * vBox.getChildren().size()) - (vBox.getSpacing() * (vBox.getChildren().size() - 1)),
-                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - keyBoxes.get(0).getBox().getPadding().getLeft() - defaultButtonInsets.getLeft() * 2)
-        );
+        vBox.setPadding(getVBoxInsets());
     }
 
+    /**
+     * This Method creates the KeyBoxes at the Game Start
+     *
+     */
     private void loadKeyBoxes() {
         KeyAction[] keyActions = {KeyAction.UP, KeyAction.DOWN, KeyAction.LEFT, KeyAction.RIGHT};
         for (KeyAction keyAction : keyActions) {
@@ -62,6 +73,11 @@ public class SettingsMenu {
         });
     }
 
+    /**
+     * This Method handel's the press of a Key
+     *
+     * @param event
+     */
     protected void handelKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
             Game.getInstance().getWindow().setScene(Game.getInstance().getMainMenu().getScene());
@@ -79,24 +95,74 @@ public class SettingsMenu {
         }
     }
 
+    /**
+     * This Method saves the KeyBox last clicked on
+     *
+     * @param keyBox
+     */
     public void setKeyBox(KeyBox keyBox) {
         keyBox.getButton().setText("Press a Key");
         this.keyBox = keyBox;
     }
 
+    /**
+     * This Method calculates the Insets for the VBox
+     *
+     * @return Insets   calculated with the buttons and labels
+     */
+    private Insets getVBoxInsets() {
+        return new Insets(
+                ((Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - defaultButtonInsets.getTop() * vBox.getChildren().size()) - (vBox.getSpacing() * (vBox.getChildren().size() - 1)),
+                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2),
+                ((Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - defaultButtonInsets.getBottom()  * vBox.getChildren().size()) - (vBox.getSpacing() * (vBox.getChildren().size() - 1)),
+                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - keyBoxes.get(0).getBox().getPadding().getLeft() - defaultButtonInsets.getLeft() * 2);
+    }
+
+    /**
+     * Getter for the last clicked on KeyBox
+     *
+     * @return KeyBox   the last clicked on KeyBox
+     */
     public KeyBox getKeyBox() {
         return keyBox;
     }
 
-    public VBox getvBox() {
+    /**
+     * Getter for the vBox the KeyBoxes are on
+     *
+     * @return VBox     the vBox with the KeyBoxes
+     */
+    public VBox getVBox() {
         return vBox;
     }
 
+    /**
+     * The KeyBox Class contains a vBox with one Label and one Button
+     * also it implements a keyAction connected to it
+     *
+     */
     public class KeyBox {
 
+        /**
+         * The KeyAction this KeyBox handel's
+         */
         private KeyAction keyAction;
+
+        /**
+         * The HBox the button and the label is on
+         */
         private HBox hBox;
+
+        /**
+         * The Button
+         * the Text is the KeyCode
+         */
         private Button button;
+
+        /**
+         * The Label
+         * the Text is the name of the KeyAction
+         */
         private Label label;
 
         public KeyBox(KeyAction action, KeyCode code) {
@@ -105,13 +171,10 @@ public class SettingsMenu {
             label = new Label(action.getName(action));
             label.setStyle("-fx-border-width: 2px; -fx-border-color: #2e8b57");
             label.setPadding(defaultButtonInsets);
+
             button = new Button(code.getName());
             button.setPadding(defaultButtonInsets);
-            button.setOnAction(event -> {
-                if (getKeyBox() == null) {
-                    setKeyBox(this);
-                }
-            });
+            button.setOnAction(event -> handelButtonPress());
 
             hBox = new HBox(10);
             hBox.setAlignment(Pos.CENTER);
@@ -120,18 +183,47 @@ public class SettingsMenu {
             hBox.getChildren().addAll(label, button);
         }
 
+        /**
+         * This Method handel's the press on the Button
+         */
+        private void handelButtonPress() {
+            if (getKeyBox() == null) {
+                setKeyBox(this);
+            }
+        }
+
+        /**
+         * Getter for the keyAction this KeyBox handels
+         *
+         * @return KeyAction    The keyAction of this KeyBox
+         */
         public KeyAction getKeyAction() {
             return keyAction;
         }
 
+        /**
+         * Getter for the HBox that contains both the Button and the Label
+         *
+         * @return HBox     the HBox of this KeyBox
+         */
         public HBox getBox() {
             return hBox;
         }
 
+        /**
+         * Getter for the Button in this KeyBox
+         *
+         * @return Button   the Button
+         */
         public Button getButton() {
             return button;
         }
 
+        /**
+         * Getter for the Label in this KeyBox
+         *
+         * @return Label    the Label
+         */
         public Label getLabel() {
             return label;
         }

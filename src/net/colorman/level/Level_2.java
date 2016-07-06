@@ -2,9 +2,6 @@ package net.colorman.level;
 
 import net.colorman.enums.PlatformSize;
 
-/**
- * Created by Paul on 03.07.2016.
- */
 public class Level_2 extends Level {
 
     public Level_2() {

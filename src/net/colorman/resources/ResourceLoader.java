@@ -1,12 +1,13 @@
 package net.colorman.resources;
 
-import java.awt.Graphics2D;
+import javafx.embed.swing.SwingFXUtils;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.embed.swing.SwingFXUtils;
-import javax.swing.ImageIcon;
 
 /**
  * The resource loader class provides several resource files such as background graphics

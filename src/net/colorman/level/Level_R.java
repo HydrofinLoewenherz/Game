@@ -4,9 +4,6 @@ import net.colorman.enums.PlatformSize;
 
 import java.util.Random;
 
-/**
- * Created by Paul on 05.07.2016.
- */
 public class Level_R extends Level {
 
     public Level_R() {

@@ -11,8 +11,19 @@ import java.awt.*;
  */
 public class ActThread extends Thread {
 
+    /**
+     * Booleans to see if the Thread is ACTIVE or/and at WORK
+     */
     public static boolean ACTIVE, WORK;
+
+    /**
+     * A double for the waitTime - defines the FPS Maximum
+     */
     public double waitTime;
+
+    /**
+     * A Boolean to if the Game has to Slide
+     */
     public boolean slide = false;
 
     public ActThread(double time) {
@@ -34,6 +45,10 @@ public class ActThread extends Thread {
         }
     }
 
+    /**
+     * This Method dose the work for the playable Game
+     *
+     */
     private void ingameWork() {
 
         Game.getInstance().getObjectHandler().getObjectsActTemp().forEach(object -> Game.getInstance().getObjectHandler().addObjectAct(object));
@@ -46,27 +61,56 @@ public class ActThread extends Thread {
         slideAll();
     }
 
+    /**
+     * This Method reacts is the Player is outOfBounds
+     *
+     * @see #isPlayerOutOfBounds(Player)
+     *
+     */
     private void testEnd() {
         Player player = Game.getInstance().getObjectHandler().getPlayer();
         if (isPlayerOutOfBounds(player)) Game.getInstance().getRoundHandler().handelRoundEnd();
 
     }
 
+    /**
+     * This Method tests if the Player is outOfBounds (the Player has fallen out of the Game at the Bottom or the left Side)
+     *
+     * @param player    Player
+     * @return Boolean  isOutOfBounds
+     */
     private boolean isPlayerOutOfBounds(Player player) {
         return (player.getTranslateY() > Toolkit.getDefaultToolkit().getScreenSize().getHeight() || player.getTranslateX() + player.getImage().getWidth() < 0);
     }
 
+    /**
+     * This Method calculates the SlideSpeed
+     *
+     * @return Double   SlideSpeed
+     */
     private double mathSlideSpeed() {
         double temp = Game.getInstance().getObjectHandler().getPlayer().getTranslateX() - Toolkit.getDefaultToolkit().getScreenSize().getWidth() * .5;
         if (temp < 0) return 0;
         else return temp;
     }
 
+    /**
+     * This Method slides All Objects by the SlideSpeed
+     *
+     * @see #mathSlideSpeed()
+     *
+     */
     public void slideAll() {
         double speed = mathSlideSpeed();
         Game.getInstance().getObjectHandler().getObjectsAct().forEach(object -> object.slide(speed));
     }
 
+    /**
+     * This Method is a timer that waits the waitingTime
+     *
+     * @see #waitTime()
+     *
+     */
     private void waitTime() {
         try {
             sleep( (long) waitTime);
@@ -75,6 +119,10 @@ public class ActThread extends Thread {
         }
     }
 
+    /**
+     * This Method stops the Thread
+     *
+     */
     public void stopThread() {
         ACTIVE = false;
     }
