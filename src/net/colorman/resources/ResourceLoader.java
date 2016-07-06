@@ -8,23 +8,38 @@ import java.util.List;
 import javafx.embed.swing.SwingFXUtils;
 import javax.swing.ImageIcon;
 
+/**
+ * The resource loader class provides several resource files such as background graphics
+ *
+ * @see javafx.scene.image.Image
+ */
 public class ResourceLoader {
 
+    /**
+     * Package in which the resources are stored as default
+     */
     private static final String RESOURCE_PATH = "/net/colorman/resources/";
-
+    /**
+     * Images subfolder
+     *
+     * @see #RESOURCE_PATH
+     */
     private static final String IMAGES_FOLDER = "images/";
-    private static final String IMAGES_RESOURCE_PATH = RESOURCE_PATH + IMAGES_FOLDER;
 
-    /*
-    Background file name pattern:
-    "background[INDEX].png"
-    Example: "background0.png", "background1.png", ..., "background42.png", etc.
-    */
+    /**
+     * File name prefix of background images
+     */
     private static final String BACKGROUND_IMAGE_PREFIX = "background";
+    /**
+     * File extension of background images
+     */
     private static final String BACKGROUND_IMAGE_POSTFIX = ".png";
 
-    /*
-    Helper method to convert AWT into JavaFX Images
+    /**
+     * This method is used to convert AWT images into JavaFX images.
+     *
+     * @param awtImage  Image object to convert
+     * @return          JavaFX Image
      */
     private javafx.scene.image.Image convertAWTImageToFX(java.awt.Image awtImage) {
 
@@ -41,21 +56,41 @@ public class ResourceLoader {
 
     }
 
+    /**
+     * Method to load a single JavaFX Image from the resource package
+     *
+     * @param name  Filename
+     * @return      JavaFX Image
+     */
     public javafx.scene.image.Image getImage(String name) {
 
-        String imagePath = IMAGES_RESOURCE_PATH + name;
+        String imagePath = RESOURCE_PATH + IMAGES_FOLDER + name;
         java.awt.Image awtImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
         return convertAWTImageToFX(awtImage);
 
     }
 
+    /**
+     * Returns all available background Images within a specified range as a List
+     *
+     * @param begin         Begin index
+     * @param end           End index
+     * @return              List of JavaFX Images
+     * @throws IOException  Throws IOException if any files could not be provided
+     */
     public List<javafx.scene.image.Image> getBackgroundImages(int begin, int end) throws IOException {
 
         List<javafx.scene.image.Image> backgroundImages = new ArrayList<>();
 
         for (int index = begin; index < end; index++) {
 
-            String currentImagePath = IMAGES_RESOURCE_PATH + BACKGROUND_IMAGE_PREFIX + String.valueOf(index) + BACKGROUND_IMAGE_POSTFIX;
+            String currentImagePath = (
+                    RESOURCE_PATH +
+                    IMAGES_FOLDER +
+                    BACKGROUND_IMAGE_PREFIX +
+                    String.valueOf(index) +
+                    BACKGROUND_IMAGE_POSTFIX
+            );
 
             java.awt.Image awtImage = new ImageIcon(getClass().getResource(currentImagePath)).getImage();
             backgroundImages.add(convertAWTImageToFX(awtImage));
