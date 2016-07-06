@@ -39,22 +39,37 @@ public class MainMenu {
         sideMenu = new SideMenu();
         settingsMenu = new SettingsMenu();
 
-        scene.setOnKeyPressed(e -> {if (e.getCode() == KeyCode.ESCAPE) Game.getInstance().getMainHandler().handelGameEnd();});
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE){
+                if (mainGroup.getChildren().contains(vBox)) {
+                    Game.getInstance().getMainHandler().handelGameEnd();
+                }
+                else {
+                    sideMenu.switchMenu();
+                }
+            }
+            else {
+                settingsMenu.handelKeyPress(event);
+            }
+        });
         scene.setOnMouseMoved(this::handelMouseMotion);
 
         startButton = new Button("Start Game");
+        startButton.setMaxWidth(Double.MAX_VALUE);
         startButton.setOnAction(event -> {
             Game.getInstance().getWindow().setScene(Game.getInstance().getGameScene().getScene());
             Game.getInstance().getWindow().setFullScreen(true);
             ActThread.WORK = true;
         });
+        startButton.setPadding(defaultButtonInserts);
 
         pauseButton = new Button("Pause Game");
+        pauseButton.setMaxWidth(Double.MAX_VALUE);
         pauseButton.setOnAction(event -> Game.getInstance().getWindow().setIconified(true));
         pauseButton.setPadding(defaultButtonInserts);
 
-        startButton.setPadding(defaultButtonInserts);
-        exitButton = new Button("  Exit Game  ");
+        exitButton = new Button("Exit Game");
+        exitButton.setMaxWidth(Double.MAX_VALUE);
         exitButton.setOnAction(event -> Game.getInstance().getMainHandler().handelGameEnd());
         exitButton.setPadding(defaultButtonInserts);
 
@@ -99,6 +114,10 @@ public class MainMenu {
 
     public SettingsMenu getSettingsMenu() {
         return settingsMenu;
+    }
+
+    public VBox getvBox() {
+        return vBox;
     }
 }
 

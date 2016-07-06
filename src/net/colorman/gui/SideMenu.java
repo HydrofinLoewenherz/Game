@@ -27,13 +27,23 @@ public class SideMenu {
         mainGroup = new Group();
         VBox vBox = new VBox(20);
 
-        homeButton = new Button("  Close   ");
-        homeButton.setOnAction(event -> Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(mainGroup));
+        homeButton = new Button("Home");
+        homeButton.setMaxWidth(Double.MAX_VALUE);
+        homeButton.setOnAction(event -> {
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(mainGroup);
+            if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getvBox())) {
+                switchMenu();
+                Game.getInstance().getWindow().setFullScreen(true);
+            }
+        });
         homeButton.setPadding(defaultInsets);
         settingsButton = new Button("Settings");
+        settingsButton.setMaxWidth(Double.MAX_VALUE);
         settingsButton.setOnAction(event -> {
-            Game.getInstance().getWindow().setScene(Game.getInstance().getMainMenu().getSettingsMenu().getScene());
-            Game.getInstance().getWindow().setFullScreen(true);
+            if (Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getvBox())) {
+                switchMenu();
+                Game.getInstance().getWindow().setFullScreen(true);
+            }
         });
         settingsButton.setPadding(defaultInsets);
 
@@ -49,6 +59,19 @@ public class SideMenu {
         vBox.setAlignment(Pos.CENTER);
 
         mainGroup.getChildren().add(vBox);
+    }
+
+    public void switchMenu() {
+        if (Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getvBox())) {
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(Game.getInstance().getMainMenu().getvBox());
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getSettingsMenu().getvBox());
+        }
+        else {
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getvBox());
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(Game.getInstance().getMainMenu().getSettingsMenu().getvBox());
+        }
+
+        Game.getInstance().getWindow().setFullScreen(true);
     }
 
     public Group get() {

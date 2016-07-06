@@ -3,7 +3,6 @@ package net.colorman.gui;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -26,24 +25,20 @@ import java.util.List;
  */
 public class SettingsMenu {
 
-    private Scene scene;
     private Group mainGroup;
+    VBox vBox;
     private KeyBox keyBox;
     List<KeyBox> keyBoxes;
     private final Insets defaultButtonInsets = new Insets(40,150,40,150);
 
     public SettingsMenu() {
         mainGroup = new Group();
-        VBox vBox = new VBox(20);
+        vBox = new VBox(20);
         keyBoxes = new ArrayList<>();
         mainGroup.getChildren().add(vBox);
 
-        scene = new Scene(mainGroup);
-        scene.setOnKeyPressed(this::handelKeyPress);
-
         loadKeyBoxes();
 
-        keyBoxes.forEach(keyBox -> vBox.getChildren().add(keyBox.getBox()));
         vBox.setAlignment(Pos.CENTER);
 
 
@@ -61,14 +56,18 @@ public class SettingsMenu {
         for (KeyAction keyAction : keyActions) {
             keyBoxes.add(new KeyBox(keyAction, Game.getInstance().getSettingsHandler().getKeyByAction(keyAction).getKeyCode()));
         }
+        keyBoxes.forEach(keyBox -> {
+            vBox.getChildren().add(keyBox.getBox());
+            keyBox.getBox().setMinWidth(Double.MIN_VALUE);
+        });
     }
 
-    private void handelKeyPress(KeyEvent event) {
+    protected void handelKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
             Game.getInstance().getWindow().setScene(Game.getInstance().getMainMenu().getScene());
             Game.getInstance().getWindow().setFullScreen(true);
         }
-        if (keyBox != null) {
+        else if (keyBox != null) {
             Key key = Game.getInstance().getSettingsHandler().getKeyByAction(keyBox.getKeyAction());
             if (key != null) {
                 Game.getInstance().getSettingsHandler().getKeyByAction(keyBox.getKeyAction()).setKeyCode(event.getCode());
@@ -89,8 +88,8 @@ public class SettingsMenu {
         return keyBox;
     }
 
-    public Scene getScene() {
-        return scene;
+    public VBox getvBox() {
+        return vBox;
     }
 
     public class KeyBox {
@@ -101,10 +100,10 @@ public class SettingsMenu {
         private Label label;
 
         public KeyBox(KeyAction action, KeyCode code) {
-            hBox = new HBox(10);
             keyAction = action;
 
             label = new Label(action.getName(action));
+            label.setStyle("-fx-border-width: 2px; -fx-border-color: #2e8b57");
             label.setPadding(defaultButtonInsets);
             button = new Button(code.getName());
             button.setPadding(defaultButtonInsets);
@@ -113,6 +112,10 @@ public class SettingsMenu {
                     setKeyBox(this);
                 }
             });
+
+            hBox = new HBox(10);
+            hBox.setAlignment(Pos.CENTER);
+            hBox.setMaxWidth(Double.MAX_VALUE);
 
             hBox.getChildren().addAll(label, button);
         }
@@ -127,6 +130,10 @@ public class SettingsMenu {
 
         public Button getButton() {
             return button;
+        }
+
+        public Label getLabel() {
+            return label;
         }
     }
 }
