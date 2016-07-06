@@ -6,6 +6,12 @@ public enum KeyAction {
     LEFT,
     RIGHT;
 
+    /**
+     * This Method returns the Name of a KeyAction
+     *
+     * @param action    KeyAction
+     * @return String   Name
+     */
     public String getName(KeyAction action) {
         switch (action) {
             case UP:
