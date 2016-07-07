@@ -113,7 +113,9 @@ public class SideMenu {
             Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getSettingsMenu().getVBox());
         }
 
-        Game.getInstance().getWindow().setFullScreen(true);
+        if (!Game.getInstance().getWindow().isFullScreen()) {
+            Game.getInstance().getWindow().setFullScreen(true);
+        }
     }
 
     private void removeGUIfromMain() {

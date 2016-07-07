@@ -1,5 +1,6 @@
 package net.colorman.handler;
 
+import javafx.application.Platform;
 import net.colorman.Game;
 import net.colorman.level.Level;
 import net.colorman.level.Level_1;
@@ -34,6 +35,10 @@ public class RoundHandler {
      */
     public void handelRoundWin() {
         handelRoundEnd();
+        Platform.runLater(() -> {
+            Game.getInstance().getWindow().setScene(Game.getInstance().getMainMenu().getScene());
+            Game.getInstance().getWindow().setFullScreen(true);
+        });
     }
 
     /**
