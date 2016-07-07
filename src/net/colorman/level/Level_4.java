@@ -8,7 +8,7 @@ import net.colorman.enums.PlatformSize;
 public class Level_4 extends Level {
 
     public Level_4() {
-        super(new int[] {0,1}, "Level 4");
+        super(new int[] {0,1}, "Another Try");
     }
 
     @Override

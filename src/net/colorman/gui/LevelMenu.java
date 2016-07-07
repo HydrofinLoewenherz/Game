@@ -7,6 +7,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import net.colorman.Game;
 import net.colorman.level.Level;
 
@@ -38,8 +39,6 @@ public class LevelMenu {
     }
 
     private void loadVBoxes() {
-        VBox vBox = new VBox(10);
-
         vBoxes.add(new VBox(10));
         vBoxes.add(new VBox(10));
         vBoxes.add(new VBox(10));
@@ -47,12 +46,14 @@ public class LevelMenu {
 
     private void loadLevels() {
         int last = 0;
+        int counter = 0;
 
         for (Level level : levels) {
-            Button levelButton = new Button(level.getName());
+            Button levelButton = new Button(level.getName() + "\nLevel " + ++counter);
             levelButton.setOnAction(event -> handelButtonPress(level));
             levelButton.setMaxWidth(Double.MAX_VALUE);
             levelButton.setPadding(defaultButtonInserts);
+            levelButton.setTextAlignment(TextAlignment.CENTER);
 
             if (last < vBoxes.size()) {
                 vBoxes.get(last).getChildren().add(levelButton);
@@ -80,7 +81,7 @@ public class LevelMenu {
                 (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - (vBoxes.size() * (vBoxes.get(0).getSpacing() + vBoxes.get(0).getHeight())),
                 (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2),
                 (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - (vBoxes.size() * (vBoxes.get(0).getSpacing() + vBoxes.get(0).getHeight())),
-                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - (vBoxes.size() * (defaultButtonInserts.getLeft() + hBox.getSpacing())));
+                (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - (vBoxes.size() * defaultButtonInserts.getLeft() + (hBox.getSpacing() * 2)));
     }
 
     public void remove() {
