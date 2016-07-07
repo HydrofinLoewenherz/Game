@@ -6,6 +6,7 @@ import net.colorman.level.Level;
 import net.colorman.level.Level_1;
 import net.colorman.level.Level_2;
 import net.colorman.level.Level_3;
+import net.colorman.level.Level_4;
 import net.colorman.level.Level_R;
 import net.colorman.objects.Object;
 import net.colorman.threads.ActThread;
@@ -82,6 +83,7 @@ public class RoundHandler {
         levels.add(new Level_1());
         levels.add(new Level_2());
         levels.add(new Level_3());
+        levels.add(new Level_4());
         levels.add(new Level_R());
     }
 
