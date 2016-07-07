@@ -5,7 +5,7 @@ import net.colorman.enums.PlatformSize;
 public class Level_1 extends Level {
 
     public Level_1() {
-        super(new int[] {0,9});
+        super(new int[] {0,9}, "The Beginning");
     }
 
     @Override

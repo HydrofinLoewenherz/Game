@@ -3,6 +3,7 @@ package net.colorman;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import net.colorman.gui.GameScene;
+import net.colorman.gui.LevelMenu;
 import net.colorman.gui.MainMenu;
 import net.colorman.handler.GameHandler;
 import net.colorman.handler.ObjectHandler;
@@ -63,13 +64,13 @@ public class Game extends Application{
         instance = this;
         window = primaryStage;
 
+        roundHandler = new RoundHandler();
         settingsHandler = new SettingsHandler();
         mainMenu = new MainMenu();
         gameScene = new GameScene();
         mainHandler = new GameHandler();
         objectHandler = new ObjectHandler();
         actThread = new ActThread(80);
-        roundHandler = new RoundHandler();
 
         window.setResizable(false);
         window.setFullScreenExitHint("");
@@ -81,6 +82,8 @@ public class Game extends Application{
         window.show();
 
         mainHandler.handelGameStart();
+
+        new LevelMenu();
     }
 
     /**

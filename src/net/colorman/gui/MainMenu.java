@@ -45,6 +45,11 @@ public class MainMenu {
     private SettingsMenu settingsMenu;
 
     /**
+     * The LevelMenu to set the Level
+     */
+    private LevelMenu levelMenu;
+
+    /**
      * A boolean to see if the SideMenu is open
      */
     private boolean showedSideMenu;
@@ -60,6 +65,7 @@ public class MainMenu {
         scene = new Scene(mainGroup);
         sideMenu = new SideMenu();
         settingsMenu = new SettingsMenu();
+        levelMenu = new LevelMenu();
 
         scene.setOnKeyPressed(this::handelKeyPress);
         scene.setOnMouseMoved(this::handelMouseMotion);
@@ -125,7 +131,7 @@ public class MainMenu {
                 Game.getInstance().getMainHandler().handelGameEnd();
             }
             else {
-                sideMenu.switchMenu();
+                sideMenu.switchMenu(1);
             }
         }
         else {
@@ -148,6 +154,10 @@ public class MainMenu {
             mainGroup.getChildren().add(sideMenu.get());
             showedSideMenu = true;
         }
+    }
+
+    public void remove() {
+        mainGroup.getChildren().remove(vBox);
     }
 
     /**
@@ -197,6 +207,15 @@ public class MainMenu {
      */
     public SettingsMenu getSettingsMenu() {
         return settingsMenu;
+    }
+
+    /**
+     * A Getter for the LevelMenu
+     *
+     * @return LevelMenu
+     */
+    public LevelMenu getLevelMenu() {
+        return levelMenu;
     }
 
     /**

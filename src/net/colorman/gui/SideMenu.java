@@ -49,7 +49,12 @@ public class SideMenu {
         settingsButton.setOnAction(event -> handelSettingsButtonPress());
         settingsButton.setPadding(defaultInsets);
 
-        vBox.getChildren().addAll(homeButton, settingsButton);
+        Button levelsButton = new Button("Levels");
+        levelsButton.setMaxWidth(Double.MAX_VALUE);
+        levelsButton.setOnAction(event -> handelLevelsButtonPress());
+        levelsButton.setPadding(defaultInsets);
+
+        vBox.getChildren().addAll(homeButton, levelsButton, settingsButton);
         vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         vBox.setPadding(getVBoxInsets());
         vBox.setAlignment(Pos.CENTER);
@@ -64,7 +69,18 @@ public class SideMenu {
     private void handelHomeButtonPress() {
         Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(mainGroup);
         if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getvBox())) {
-            switchMenu();
+            switchMenu(1);
+            Game.getInstance().getWindow().setFullScreen(true);
+        }
+    }
+
+    /**
+     * This Method handel's a press on the levelsButton
+     *
+     */
+    private void handelLevelsButtonPress() {
+        if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getLevelMenu().gethBox())) {
+            switchMenu(2);
             Game.getInstance().getWindow().setFullScreen(true);
         }
     }
@@ -74,8 +90,8 @@ public class SideMenu {
      *
      */
     private void handelSettingsButtonPress() {
-        if (Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getvBox())) {
-            switchMenu();
+        if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getSettingsMenu().getVBox())) {
+            switchMenu(3);
             Game.getInstance().getWindow().setFullScreen(true);
         }
     }
@@ -84,17 +100,26 @@ public class SideMenu {
      * This Method switches the Main and SideMenu between another
      *
      */
-    public void switchMenu() {
-        if (Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getvBox())) {
-            Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(Game.getInstance().getMainMenu().getvBox());
-            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getSettingsMenu().getVBox());
-        }
-        else {
+    public void switchMenu(int menu) {
+        removeGUIfromMain();
+
+        if (menu == 1) {
             Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getvBox());
-            Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(Game.getInstance().getMainMenu().getSettingsMenu().getVBox());
+        }
+        else if (menu == 2) {
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getLevelMenu().gethBox());
+        }
+        else if (menu == 3) {
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getSettingsMenu().getVBox());
         }
 
         Game.getInstance().getWindow().setFullScreen(true);
+    }
+
+    private void removeGUIfromMain() {
+        Game.getInstance().getMainMenu().remove();
+        Game.getInstance().getMainMenu().getSettingsMenu().remove();
+        Game.getInstance().getMainMenu().getLevelMenu().remove();
     }
 
     /**

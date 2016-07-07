@@ -128,6 +128,11 @@ public class ObjectHandler {
      * @return Player   the Player
      */
     public Player getPlayer() {
-        return (Player) (objectsAct.stream().filter(object -> object instanceof Player).toArray())[0];
+        try {
+            return (Player) (objectsAct.stream().filter(object -> object instanceof Player).toArray())[0];
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+            return null;
+        }
+
     }
 }

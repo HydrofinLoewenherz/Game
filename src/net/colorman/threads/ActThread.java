@@ -66,7 +66,10 @@ public class ActThread extends Thread {
      */
     private void testEnd() {
         Player player = Game.getInstance().getObjectHandler().getPlayer();
-        if (isPlayerOutOfBounds(player)) Game.getInstance().getRoundHandler().handelRoundEnd();
+        if (isPlayerOutOfBounds(player)) {
+            Game.getInstance().getRoundHandler().handelRoundEnd();
+            Game.getInstance().getRoundHandler().setupLevel(Game.getInstance().getRoundHandler().getPlayingLevel());
+        }
 
     }
 
@@ -77,7 +80,10 @@ public class ActThread extends Thread {
      * @return Boolean  isOutOfBounds
      */
     private boolean isPlayerOutOfBounds(Player player) {
-        return (player.getTranslateY() > Toolkit.getDefaultToolkit().getScreenSize().getHeight() || player.getTranslateX() + player.getImage().getWidth() < 0);
+        if (player != null) {
+            return (player.getTranslateY() > Toolkit.getDefaultToolkit().getScreenSize().getHeight() || player.getTranslateX() + player.getImage().getWidth() < 0);
+        }
+        return false;
     }
 
     /**
@@ -86,7 +92,13 @@ public class ActThread extends Thread {
      * @return Double   SlideSpeed
      */
     private double mathSlideSpeed() {
-        double temp = Game.getInstance().getObjectHandler().getPlayer().getTranslateX() - Toolkit.getDefaultToolkit().getScreenSize().getWidth() * .5;
+        double temp = 0;
+
+        Player player = Game.getInstance().getObjectHandler().getPlayer();
+        if (player != null) {
+            temp = player.getTranslateX() - Toolkit.getDefaultToolkit().getScreenSize().getWidth() * .5;
+        }
+
         if (temp < 0) return 0;
         else return temp;
     }

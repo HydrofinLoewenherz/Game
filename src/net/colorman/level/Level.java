@@ -33,10 +33,19 @@ public abstract class Level {
      */
     private List<Image> backgroundArray;
 
-    public Level(int[] backgroundSpan) {
+    /**
+     * The Name of the Level
+     */
+    private final String name;
+
+    public Level(int[] backgroundSpan, String name) {
+        this.name = name;
         this.resourceLoader = new ResourceLoader();
         this.backgroundSpan = backgroundSpan;
-        loadResources();
+    }
+
+    public final void setup() {loadResources();
+        temp = null;
         loadBackgrounds();
         new Player();
         loadObjects();
@@ -110,4 +119,12 @@ public abstract class Level {
         }
     }
 
+    /**
+     * A Getter for the LevelName
+     *
+     * @return String   Name of the level
+     */
+    public String getName() {
+        return name;
+    }
 }

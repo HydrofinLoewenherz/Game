@@ -73,6 +73,7 @@ public class PauseMenu {
      */
     private void handelReloadButtonPress() {
         Game.getInstance().getRoundHandler().handelRoundEnd();
+        Game.getInstance().getRoundHandler().setupLevel(Game.getInstance().getRoundHandler().getPlayingLevel());
         Game.getInstance().getMainHandler().handelPauseOff();
     }
 

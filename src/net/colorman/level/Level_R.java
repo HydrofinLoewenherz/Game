@@ -7,7 +7,7 @@ import java.util.Random;
 public class Level_R extends Level {
 
     public Level_R() {
-        super(new int[] {0,1});
+        super(new int[] {0,1}, "Random");
     }
 
     @Override

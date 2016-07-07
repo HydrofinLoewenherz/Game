@@ -1,6 +1,7 @@
 package net.colorman.handler;
 
 import net.colorman.Game;
+import net.colorman.level.Level;
 import net.colorman.level.Level_1;
 import net.colorman.level.Level_2;
 import net.colorman.level.Level_3;
@@ -8,16 +9,23 @@ import net.colorman.level.Level_R;
 import net.colorman.objects.Object;
 import net.colorman.threads.ActThread;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoundHandler {
 
     /**
-     * The round to be loaded
+     * A List with all the Levels
      */
-    private static int round;
+    private List<Level> levels;
+
+    /**
+     * The Level that is loaded right now
+     */
+    private Level playingLevel;
 
     public RoundHandler() {
-        round = 1;
-        setup();
+        setupLevelList();
     }
 
     /**
@@ -25,7 +33,6 @@ public class RoundHandler {
      *
      */
     public void handelRoundWin() {
-        round++;
         handelRoundEnd();
     }
 
@@ -36,8 +43,6 @@ public class RoundHandler {
     public void handelRoundEnd() {
         ActThread.WORK = false;
         clear();
-        setup();
-        ActThread.WORK = true;
     }
 
     /**
@@ -52,19 +57,44 @@ public class RoundHandler {
      * This Method switches the Round and setup one
      *
      */
-    private void setup() {
-        switch (round) {
-            case 1:
-                new Level_1();
-                break;
-            case 2:
-                new Level_2();
-                break;
-            case 3:
-                new Level_3();
-                break;
-
-            default: new Level_R();
+    public void setupLevel(Level level) {
+        if (level != null) {
+            level.setup();
+            playingLevel = level;
+            ActThread.WORK = true;
         }
+    }
+
+    /**
+     * This Method adds the different Levels to the levelList
+     *
+     * @see #levels
+     *
+     */
+    private void setupLevelList(){
+        levels = new ArrayList<>();
+
+        levels.add(new Level_1());
+        levels.add(new Level_2());
+        levels.add(new Level_3());
+        levels.add(new Level_R());
+    }
+
+    /**
+     * A Getter for the levelList
+     *
+     * @return List </Level>    List of all the Levels
+     */
+    public List<Level> getLevels() {
+        return levels;
+    }
+
+    /**
+     * A Getter for the Level that is loaded right now
+     *
+     * @return Level
+     */
+    public Level getPlayingLevel() {
+        return playingLevel;
     }
 }

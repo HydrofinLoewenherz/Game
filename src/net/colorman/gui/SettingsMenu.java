@@ -96,6 +96,14 @@ public class SettingsMenu {
     }
 
     /**
+     * This Method removes this Menu form the MainMenu
+     *
+     */
+    public void remove() {
+        Game.getInstance().getMainMenu().getMainGroup().getChildren().remove(vBox);
+    }
+
+    /**
      * This Method saves the KeyBox last clicked on
      *
      * @param keyBox
