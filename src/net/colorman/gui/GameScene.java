@@ -2,6 +2,7 @@ package net.colorman.gui;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import net.colorman.handler.CommandHandler;
 import net.colorman.handler.KeyboardHandler;
 
 public class GameScene {
@@ -20,6 +21,7 @@ public class GameScene {
      * The KeyboardHandler
      */
     private KeyboardHandler keyboardHandler;
+    private CommandHandler commandHandler;
 
     /**
      * The PauseMenu
@@ -35,6 +37,7 @@ public class GameScene {
         mainGroup = new Group();
         scene = new Scene(mainGroup);
         keyboardHandler = new KeyboardHandler(scene);
+        commandHandler = new CommandHandler(scene);
         pauseMenu = new PauseMenu();
     }
 
@@ -63,6 +66,10 @@ public class GameScene {
      */
     public KeyboardHandler getKeyboardHandler() {
         return keyboardHandler;
+    }
+
+    public CommandHandler getCommandHandler() {
+        return commandHandler;
     }
 
     /**

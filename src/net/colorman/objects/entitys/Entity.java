@@ -20,18 +20,23 @@ public class Entity extends Object {
 
     public Entity(Image defaultImage, Image[] imageList) {
         super(defaultImage, imageList);
+        vector = new Vector(0,-1,1);
     }
 
     /**
      * This Method moves the Object by an specific Vector
      *
      */
-    public void move() {
+    public void move(Vector vector) {
         double tempX = getTranslateX();
         double tempY = getTranslateY();
 
         setTranslateX(tempX + vector.getLengthX());
-        if (isIntersecting()) setTranslateX(tempX);
+        while (isIntersecting()) {
+            setTranslateX(tempX);
+            vector.decreaseX(2);
+            setTranslateX(tempX + vector.getLengthX());
+        }
 
         setTranslateY(tempY + vector.getLengthY());
         while (isIntersecting()) {
@@ -40,11 +45,7 @@ public class Entity extends Object {
             setTranslateY(tempY + vector.getLengthY());
         }
 
-        //test if in air
-        tempY = getTranslateY();
-        setTranslateY(tempY + 5);
-        isInAir = !isIntersecting();
-        setTranslateY(tempY);
+        vector.decrease(5);
     }
 
     /**

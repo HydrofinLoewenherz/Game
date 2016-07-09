@@ -21,7 +21,7 @@ public class Object extends ImageView {
     /**
      * A Gravity Vector for gravity
      */
-    public final Vector gravity = new Vector(0,1,2);
+    public final Vector gravity = new Vector(0,1,15);
 
     public Object(Image defaultImage, Image[] imageList) {
         super(defaultImage);
