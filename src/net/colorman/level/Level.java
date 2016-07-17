@@ -8,7 +8,6 @@ import net.colorman.objects.structure.EndPlatform;
 import net.colorman.objects.structure.Platform;
 import net.colorman.resources.ResourceLoader;
 
-import java.io.IOException;
 import java.util.List;
 
 public abstract class Level {
@@ -38,7 +37,7 @@ public abstract class Level {
      */
     private final String name;
 
-    public Level(int[] backgroundSpan, String name) {
+    Level(int[] backgroundSpan, String name) {
         this.name = name;
         this.resourceLoader = new ResourceLoader();
         this.backgroundSpan = backgroundSpan;
@@ -59,12 +58,8 @@ public abstract class Level {
      * @see #backgroundArray
      *
      */
-    private final void loadResources() {
-        try {
-            backgroundArray = resourceLoader.getBackgroundImages(backgroundSpan[0], backgroundSpan[1]);
-        } catch (IOException e) {
-            e.printStackTrace(); // Error Handling muss hinzugefügt werden!
-        }
+    private void loadResources() {
+        backgroundArray = resourceLoader.getBackgroundImages(backgroundSpan[0], backgroundSpan[1]);
     }
 
     /**
@@ -86,7 +81,7 @@ public abstract class Level {
      * This Method loads the Platforms and other Objects if needed
      *
      */
-    protected void loadObjects() {}
+    void loadObjects() {}
 
     /**
      * This Method adds a Platform to the scene
@@ -95,7 +90,7 @@ public abstract class Level {
      * @param height    The y-Coordinate the Platform will be set on
      * @param size      The size of the Platform (short / normal / long / base)
      */
-    protected void addPlatform(double gap, double height, PlatformSize size) {
+    void addPlatform(double gap, double height, PlatformSize size) {
         if (temp == null) {
             temp = new Platform(gap, height, size);
         }
