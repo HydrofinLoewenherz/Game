@@ -28,7 +28,7 @@ public class GameHandler {
      */
     public void handelPauseOn() {
         Game.getInstance().getWindow().setFullScreen(true);
-        if (!Game.getInstance().getGameScene().pause) Game.getInstance().getGameScene().getMainGroup().getChildren().add(Game.getInstance().getGameScene().getPauseMenu().get());
+        if (!Game.getInstance().getGameScene().pause) Game.getInstance().getGameScene().getMainGroup().getChildren().add(Game.getInstance().getPauseMenu().get());
         Game.getInstance().getGameScene().pause = true;
         ActThread.WORK = false;
     }
@@ -39,7 +39,7 @@ public class GameHandler {
      */
     public void handelPauseOff() {
         Game.getInstance().getWindow().setFullScreen(true);
-        if (Game.getInstance().getGameScene().pause) Game.getInstance().getGameScene().getMainGroup().getChildren().remove(Game.getInstance().getGameScene().getPauseMenu().get());
+        if (Game.getInstance().getGameScene().pause) Game.getInstance().getGameScene().getMainGroup().getChildren().remove(Game.getInstance().getPauseMenu().get());
         Game.getInstance().getGameScene().pause = false;
         ActThread.WORK = true;
     }

@@ -14,7 +14,7 @@ public class EndPlatform extends Object {
 
     @Override
     public void act() {
-        if (this.getBoundsInParent().intersects(Game.getInstance().getObjectHandler().getPlayer().getBoundsInParent()))
+        if (this.getBoundsInParent().intersects(Game.getInstance().getPlayer().getBoundsInParent()))
             Game.getInstance().getRoundHandler().handelRoundWin();
     }
 }

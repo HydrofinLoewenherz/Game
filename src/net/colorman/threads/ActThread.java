@@ -65,7 +65,7 @@ public class ActThread extends Thread {
      *
      */
     private void testEnd() {
-        Player player = Game.getInstance().getObjectHandler().getPlayer();
+        Player player = Game.getInstance().getPlayer();
         if (isPlayerOutOfBounds(player)) {
             Game.getInstance().getRoundHandler().handelRoundEnd();
             Game.getInstance().getRoundHandler().setupLevel(Game.getInstance().getRoundHandler().getPlayingLevel());
@@ -94,7 +94,7 @@ public class ActThread extends Thread {
     private double mathSlideSpeed() {
         double temp = 0;
 
-        Player player = Game.getInstance().getObjectHandler().getPlayer();
+        Player player = Game.getInstance().getPlayer();
         if (player != null) {
             temp = player.getTranslateX() - Toolkit.getDefaultToolkit().getScreenSize().getWidth() * .5;
         }

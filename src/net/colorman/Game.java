@@ -15,6 +15,7 @@ import net.colorman.handler.ObjectHandler;
 import net.colorman.handler.RoundHandler;
 import net.colorman.handler.SettingsHandler;
 import net.colorman.objects.entitys.player.Player;
+import net.colorman.resources.ResourceLoader;
 import net.colorman.threads.ActThread;
 
 public class Game extends Application{
@@ -234,6 +235,15 @@ public class Game extends Application{
      */
     public PauseMenu getPauseMenu() {
         return gameScene.getPauseMenu();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public ResourceLoader getResourceLoader() {
+        return objectHandler.getResourceLoader();
     }
 
     /**
