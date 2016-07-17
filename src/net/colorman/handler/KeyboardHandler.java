@@ -141,7 +141,7 @@ public class KeyboardHandler {
     /**
      * Getter for the List of keysDown
      *
-     * @return List</KeyCode>   The keys pressed
+     * @return List </KeyCode>   The keys pressed
      */
     public List<KeyCode> getKeysDown() {
         return keysDown;
