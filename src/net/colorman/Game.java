@@ -5,10 +5,17 @@ import javafx.stage.Stage;
 import net.colorman.gui.GameScene;
 import net.colorman.gui.LevelMenu;
 import net.colorman.gui.MainMenu;
+import net.colorman.gui.PauseMenu;
+import net.colorman.gui.SettingsMenu;
+import net.colorman.gui.SideMenu;
+import net.colorman.handler.CommandHandler;
 import net.colorman.handler.GameHandler;
+import net.colorman.handler.KeyboardHandler;
 import net.colorman.handler.ObjectHandler;
 import net.colorman.handler.RoundHandler;
 import net.colorman.handler.SettingsHandler;
+import net.colorman.objects.entitys.player.Player;
+import net.colorman.resources.ResourceLoader;
 import net.colorman.threads.ActThread;
 
 public class Game extends Application{
@@ -175,4 +182,78 @@ public class Game extends Application{
     public SettingsHandler getSettingsHandler() {
         return settingsHandler;
     }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public SideMenu getSideMenu() {
+        return mainMenu.getSideMenu();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public SettingsMenu getSettingsMenu() {
+        return mainMenu.getSettingsMenu();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public LevelMenu getLevelMenu() {
+        return mainMenu.getLevelMenu();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public KeyboardHandler getKeybordHandler() {
+        return gameScene.getKeyboardHandler();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public CommandHandler getCommandHandler() {
+        return gameScene.getCommandHandler();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public PauseMenu getPauseMenu() {
+        return gameScene.getPauseMenu();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public ResourceLoader getResourceLoader() {
+        return objectHandler.getResourceLoader();
+    }
+
+    /**
+     * Getter shortcut
+     *
+     * @return
+     */
+    public Player getPlayer() {
+        return objectHandler.getPlayer();
+    }
+
+
 }

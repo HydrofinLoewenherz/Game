@@ -12,7 +12,7 @@ public class Player extends Entity {
     private double moveCounter;
 
     public Player() {
-        super(Game.getInstance().getObjectHandler().getResourceLoader().getImage("player.png"), null);
+        super(Game.getInstance().getResourceLoader().getImage("player.png"), null);
         toFront();
         moveCounter = 0;
     }
@@ -24,8 +24,8 @@ public class Player extends Entity {
             moveCounter -= .2;
         }
 
-        while (Game.getInstance().getGameScene().getCommandHandler().isKeyCommandAvailable()) {
-            Point point = Game.getInstance().getGameScene().getCommandHandler().getCurrentCommand();
+        while (Game.getInstance().getCommandHandler().isKeyCommandAvailable()) {
+            Point point = Game.getInstance().getCommandHandler().getCurrentCommand();
             if (++moveCounter < 5) {
                 vector.add(new Vector(point.getX() - getTranslateX(), point.getY() - getTranslateY(), speed));
             }

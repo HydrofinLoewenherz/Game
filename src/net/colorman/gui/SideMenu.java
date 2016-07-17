@@ -79,7 +79,7 @@ public class SideMenu {
      *
      */
     private void handelLevelsButtonPress() {
-        if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getLevelMenu().gethBox())) {
+        if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getLevelMenu().gethBox())) {
             switchMenu(2);
             Game.getInstance().getWindow().setFullScreen(true);
         }
@@ -90,7 +90,7 @@ public class SideMenu {
      *
      */
     private void handelSettingsButtonPress() {
-        if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getMainMenu().getSettingsMenu().getVBox())) {
+        if (!Game.getInstance().getMainMenu().getMainGroup().getChildren().contains(Game.getInstance().getSettingsMenu().getVBox())) {
             switchMenu(3);
             Game.getInstance().getWindow().setFullScreen(true);
         }
@@ -107,10 +107,10 @@ public class SideMenu {
             Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getvBox());
         }
         else if (menu == 2) {
-            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getLevelMenu().gethBox());
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getLevelMenu().gethBox());
         }
         else if (menu == 3) {
-            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getMainMenu().getSettingsMenu().getVBox());
+            Game.getInstance().getMainMenu().getMainGroup().getChildren().add(Game.getInstance().getSettingsMenu().getVBox());
         }
 
         if (!Game.getInstance().getWindow().isFullScreen()) {
